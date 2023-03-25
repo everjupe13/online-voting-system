@@ -1,0 +1,14 @@
+.page {
+  position: relative;
+  height: 100%;
+
+  &__wrapper {
+    padding: 70px 70px;
+    height: 100%;
+    border-radius: 0px;
+    border: 1px solid var(--color-border-content);
+
+    background-color: var(--color-content);
+    overflow-y: auto;
+  }
+}

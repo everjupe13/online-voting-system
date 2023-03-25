@@ -1,0 +1,38 @@
+@import './base.scss';
+
+#app {
+  position: relative;
+
+  width: 100vw;
+  min-width: 320px;
+  height: 100vh;
+
+  padding: 50px 60px;
+
+  font-weight: normal;
+}
+
+@media (min-width: 1024px) {
+
+}
+
+
+a {
+  font-family: var(--ff-menlo);
+  color: inherit;
+  text-underline-offset: 5px;
+
+  transition: 0.15s all linear;
+
+  &:hover {
+    -webkit-text-fill-color: transparent;
+    background: var(--link-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    text-decoration-color: #e85a19;
+    text-underline-offset: 8px;
+
+    transition: 0.2s all linear;
+  }
+}
