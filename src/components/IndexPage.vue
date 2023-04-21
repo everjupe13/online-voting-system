@@ -1,5 +1,5 @@
 <script setup>
-import AppTitle from './AppTitle.vue';
+import VotePullCard from './VotePullCard.vue';
 </script>
 
 <template>
@@ -8,8 +8,26 @@ import AppTitle from './AppTitle.vue';
 
       <div class="page__content">
         <header class="page__header">
-          <AppTitle>Heelo</AppTitle>
+          <h1 class="title">Online voting realtime</h1>
         </header>
+        <div class="page__content">
+          <h4 style="margin-bottom: 20px">Recent <router-link to="/polls">polls</router-link>:</h4>
+
+          <div class="page__content-block">
+            <VotePullCard></VotePullCard>
+          </div>
+          <div class="page__content-block">
+            <VotePullCard></VotePullCard>
+          </div>
+          <div class="page__content-block">
+            <VotePullCard></VotePullCard>
+          </div>
+          <div class="page__content-block">
+            <VotePullCard></VotePullCard>
+          </div>
+
+
+        </div>
       </div>
 
     </div>
@@ -17,5 +35,5 @@ import AppTitle from './AppTitle.vue';
 </template>
 
 <style lang="scss">
-@import '../assets/scss/IndexPage.scss';
+
 </style>

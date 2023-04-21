@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../online-voting-system-server"
+		}
+		// {
+		// 	"path": "../../../../../Applications/MAMP/htdocs/online_voting_system"
+		// }
+	],
+	"settings": {}
+}

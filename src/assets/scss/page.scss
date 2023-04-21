@@ -2,6 +2,10 @@
   position: relative;
   height: 100%;
 
+  &__header {
+    margin-bottom: 40px;
+  }
+
   &__wrapper {
     padding: 70px 70px;
     height: 100%;
@@ -10,5 +14,9 @@
 
     background-color: var(--color-content);
     overflow-y: auto;
+  }
+
+  &__content-block {
+    margin-bottom: 20px;
   }
 }

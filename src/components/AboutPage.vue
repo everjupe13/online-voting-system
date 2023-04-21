@@ -1,5 +1,5 @@
 <script setup>
-import AppTitle from './AppTitle.vue';
+
 </script>
 
 <template>
@@ -8,7 +8,7 @@ import AppTitle from './AppTitle.vue';
 
       <div class="page__content">
         <header class="page__header">
-          <AppTitle>Heelo</AppTitle>
+          <h1 class="title">Heelo</h1>
         </header>
       </div>
 
@@ -17,5 +17,5 @@ import AppTitle from './AppTitle.vue';
 </template>
 
 <style lang="scss">
-@import '../assets/scss/IndexPage.scss';
+
 </style>

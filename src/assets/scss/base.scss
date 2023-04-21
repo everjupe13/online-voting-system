@@ -1,7 +1,8 @@
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
   --c-white: rgb(221, 221, 221);
-  --c-white-2: rgb(190, 190, 190);
+  --c-white-2: rgb(241, 241, 241);
+  --c-white-3: rgb(255, 255, 255);
   --c-black: rgba(47, 47, 47);
   --c-black-2:#141415;
   --c-black-3: rgb(0 0 0);
@@ -14,28 +15,53 @@
 
   --c-text-light-1: var(--c-white);
   --c-text-light-2: var(--c-white);
-  --c-text-dark-1: var(--c-white);
+  --c-text-dark-1: var(--c-black-2);
   --c-text-dark-2: rgba(235, 235, 235, 0.64);
 
+  --c-accent: #e85a19;
+  --c-accent-2: rgba(232, 90, 25, .5);
 }
 
-:root {
+
+:root,
+body.light {
   --color-background: var(--c-white);
-  --color-content: var(--c-white-2)
+  --color-content: var(--c-white-2);
 
   --color-border: var(--c-divider-light-2);
   --color-border-hover: var(--c-divider-light-1);
 
   --color-heading: var(--c-text-light-1);
-  --color-text: var(--c-text-light-1);
+  --color-text: var(--c-text-dark-1);
 
   --section-gap: 160px;
 
   --link-gradient: linear-gradient(90deg,#f5ce62,#e85a19);
-  --color-border-content: transparent
+  --link-gradient-2: linear-gradient(90deg, #27c2ff,#4f92f7);
+  --color-border-content: transparent;
+
+  --color-input-background: var(--c-white-3);
+  --color-input: var(----c-text-dark-2);
+}
+
+:root
+body.dark {
+  --color-background: var(--c-black);
+  --color-content: var(--c-black-2);
+
+  --color-border: var(--c-divider-dark-2);
+  --color-border-hover: var(--c-divider-dark-1);
+
+  --color-heading: var(--c-text-dark-1);
+  --color-text: var(--c-text-dark-2);
+  --color-input-text: var(--c-text-dark-2);
+  --color-border-content: var(--c-black-3);
+
+  --color-input-background: var(--c-black-3);
 }
 
 @media (prefers-color-scheme: dark) {
+  body.dark,
   :root {
     --color-background: var(--c-black);
     --color-content: var(--c-black-2);
@@ -45,7 +71,10 @@
 
     --color-heading: var(--c-text-dark-1);
     --color-text: var(--c-text-dark-2);
-    --color-border-content: var(--c-black-3)
+    --color-input-text: var(--c-text-dark-2);
+    --color-border-content: var(--c-black-3);
+
+    --color-input-background: var(--c-black-3);
   }
 }
 

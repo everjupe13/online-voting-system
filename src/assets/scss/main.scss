@@ -1,4 +1,9 @@
+@import './mixins.scss';
+
+
 @import './base.scss';
+@import './page.scss';
+
 
 #app {
   position: relative;
@@ -16,7 +21,6 @@
 
 }
 
-
 a {
   font-family: var(--ff-menlo);
   color: inherit;
@@ -25,14 +29,29 @@ a {
   transition: 0.15s all linear;
 
   &:hover {
-    -webkit-text-fill-color: transparent;
-    background: var(--link-gradient);
-    -webkit-background-clip: text;
-    background-clip: text;
+    @include link-gradient()
+  }
+}
 
-    text-decoration-color: #e85a19;
-    text-underline-offset: 8px;
 
-    transition: 0.2s all linear;
+
+
+.title {
+  font-weight: 900;
+  font-size: 42px;
+  margin: 0;
+}
+
+
+
+.form {
+  display: block;
+
+  &__inputs {
+    margin-bottom: 30px;
+
+    .input-wrapper {
+      margin-bottom: 15px;
+    }
   }
 }

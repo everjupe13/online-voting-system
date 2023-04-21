@@ -10,5 +10,6 @@ module.exports = {
   ],
   parserOptions: {
     ecmaVersion: 'latest'
-  }
+  },
+  ingorePatterns: []
 }

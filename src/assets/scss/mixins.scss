@@ -1,0 +1,11 @@
+@mixin link-gradient() {
+  -webkit-text-fill-color: transparent;
+  background: var(--link-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  text-decoration-color: #e85a19;
+  text-underline-offset: 8px;
+
+  transition: 0.2s all linear;
+}

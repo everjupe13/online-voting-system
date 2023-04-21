@@ -10,7 +10,7 @@ import { RouterLink } from 'vue-router'
 
   <RouterLink to="/" class="logo">
     <span class="logo__glass">
-      <img alt="online" class="logo__img" src="@/assets/img/logo.svg">
+      <img alt="online" class="logo__img" src="@/assets/img/check-mark.png" style="filter: grayscale(1)">
     </span>
   </RouterLink>
 </template>
@@ -19,18 +19,16 @@ import { RouterLink } from 'vue-router'
 .logo {
   display: block;
 
-  width: 50px;
-  height: 50px;
+  height: 100%;
 
   &__glass {
     display: block;
-    width: 100%;
-    height: 100px;
+    height: 100%;
   }
 
   &__img {
     display: block;
-    width: 100%;
+    height: 100%;
   }
 }
 </style>
