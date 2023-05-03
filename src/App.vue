@@ -1,10 +1,13 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import LayoutDefault from './components/LayoutDefault.vue';
-import AppMainAside from './components/AppMainAside.vue';
+import LayoutDefault from '@/layouts/LayoutDefault.vue'
+import AppMainAside from '@/layouts/AppMainAside.vue'
+
+import { useStore } from 'vuex'
 
 
-
+const store = useStore()
+store.dispatch('auth/setupUserSession')
 </script>
 
 <template>

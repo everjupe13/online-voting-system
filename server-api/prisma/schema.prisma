@@ -12,22 +12,22 @@ datasource db {
 
 
 model Topics {
-  id    Int     @id @default(autoincrement())
-  name  String  @db.VarChar(255)
-  createdAt   DateTime @default(now())
-  description String
-  votes Votes[]
-  stars Stars[]
+  id             Int         @id @default(autoincrement())
+  name           String      @db.VarChar(255)
+  createdAt      DateTime    @default(now())
+  description    String
+  votes          Votes[]
+  stars          Stars[]
 }
 
 model Votes {
   // id            Int       @id @default(autoincrement())
-  topic         Topics    @relation(fields: [topicId], references: [id])
+  topic         Topics     @relation(fields: [topicId], references: [id])
   topicId       Int
-  user          User      @relation(fields: [userId], references: [id])
+  user          User       @relation(fields: [userId], references: [id])
   userId        Int
-  voted         Boolean   @default(false)
-  voteResult    Boolean   @default(false)
+  voted         Boolean    @default(false)
+  voteResult    Boolean    @default(false)
 
   @@id([topicId, userId])
 
@@ -47,10 +47,10 @@ model Stars {
 
 model User {
   id          Int        @id @default(autoincrement())
-  email       String     @unique
-  name        String?    
-  createdAt   DateTime @default(now())
-  votes       Votes[]  
+  email       String     @unique @db.VarChar(255)
+  password    String     @db.VarChar(255)
+  createdAt   DateTime   @default(now())
+  votes       Votes[]
   stars       Stars[]  
   profile      Profile?
 }
@@ -58,6 +58,7 @@ model User {
 model Profile {
   id        Int        @id @default(autoincrement())
   bio       String?   
+  name      String?    
   user      User       @relation(fields: [userId], references: [id])
   userId    Int        @unique
 }

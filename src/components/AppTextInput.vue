@@ -26,7 +26,7 @@ const handleInput = e => {
 </script>
 
 <template>
-  <div :class="['input-wrapper', {'input-wrapper_row': props.label}]" tabindex="0">
+  <div :class="['input-wrapper', {'input-wrapper_row': props.label}]">
     <div v-if="props.label" class="input__label-box">
       <label
         :for="props.labelBindingId"
