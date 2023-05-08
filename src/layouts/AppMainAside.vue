@@ -44,6 +44,7 @@ const logout = async () => {
         </button>
         <button 
           v-if="store.getters['auth/isAuth']"
+          class="logout-button"
           @click.prevent="logout"
         >Logout</button>
       </div>
@@ -57,7 +58,9 @@ const logout = async () => {
         <RouterLink active-class="--active" to="/">Home</RouterLink>
         <RouterLink active-class="--active" to="/about">About</RouterLink>
         <RouterLink v-if="!store.getters['auth/isAuth']" active-class="--active" to="/auth">Auth</RouterLink>
+        <RouterLink v-if="store.getters['auth/isAuth']" active-class="--active" to="/profile">Profile</RouterLink>
       </nav>
+      <p style="text-align: center; margin-top: auto">v0.0.1 <br><small>educational project for the university</small></p>
     </div>
   </div>
 </template>
@@ -66,7 +69,7 @@ const logout = async () => {
 @import '../assets/scss/mixins.scss';
 
 .app-main-aside {
-  padding: 0 15px;
+  padding: 0 0;
   height: 100%;
 
   --header-height: 100px;
@@ -148,13 +151,34 @@ const logout = async () => {
   }
 
   &__content {
+    display: flex;
+    flex-direction: column;
+
     height: calc(100% - calc(var(--header-height, 100px) + var(--header-top-offset, 20px)) - var(--header-mb, 20px));
     padding-top: 20px;
+
+    font-size: 12px;
   }
 }
 
 
+.logout-button {
+  display: block;
+  margin-left: auto;
+  border: 0;
+  background-color: transparent;
 
+  font-family: var(--ff-menlo);
+  color: inherit;
+  text-underline-offset: 5px;
+
+  transition: 0.15s all linear;
+  text-decoration: underline;
+
+  &:hover {
+    @include link-gradient()
+  }
+}
 
 nav {
   display: flex;

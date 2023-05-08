@@ -30,8 +30,8 @@ CREATE TABLE `Stars` (
 -- CreateTable
 CREATE TABLE `User` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `email` VARCHAR(191) NOT NULL,
-    `name` VARCHAR(191) NULL,
+    `email` VARCHAR(255) NOT NULL,
+    `password` VARCHAR(255) NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
 
     UNIQUE INDEX `User_email_key`(`email`),
@@ -42,6 +42,7 @@ CREATE TABLE `User` (
 CREATE TABLE `Profile` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `bio` VARCHAR(191) NULL,
+    `name` VARCHAR(191) NULL,
     `userId` INTEGER NOT NULL,
 
     UNIQUE INDEX `Profile_userId_key`(`userId`),

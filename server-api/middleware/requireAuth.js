@@ -17,6 +17,7 @@ export const requireAuth = async (req, res, next) => {
 
   const payload = jwt.verify(token, process.env.JWT_SECRET)
   const user = await UserService.getUser({ id: payload.userId })
+  delete user.password
 
   if (!user) {
     return res.status(200).json({
