@@ -69,11 +69,14 @@ router.post('/auth/signin', async (req, res) => {
   const requestedUser = user
   delete requestedUser.password
 
-  res.status(200).json({ requestedUser, token, status: true })
+  res.status(200).json({ user: requestedUser, token, status: true })
 })
 
 router.post('/user/show', requireAuth, async (req, res) => {
-  res.status(200).json({ user: req.user, status: true })
+  const requestedUser = req.user
+  delete requestedUser.password
+
+  res.status(200).json({ user: requestedUser, status: true })
 })
 
 export { router as userRoutes }

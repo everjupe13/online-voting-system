@@ -13,10 +13,15 @@ class TopicsServiceClass extends BaseService {
     }
   }
   async getTopic({ id }) {
-    return await this.model.get({ id: Number(id) })
+    const topic = await this.model.get({ id: Number(id) })
+    return topic
   }
   async getAllTopics() {
-    return await this.model.getAll()
+    const topics = await this.model.getAll()
+    topics.map(topic => {
+      return { ...topic, voteFor: 1, voteAgainst: 0 }
+    })
+    return topics
   }
   updateInfo() {
 

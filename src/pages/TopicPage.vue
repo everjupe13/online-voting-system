@@ -3,12 +3,38 @@ import { BreadCrumbs } from '@/shared/BreadCrumbs'
 import AppButton from '../components/AppButton.vue'
 import { useTopicInfo } from '@/modules/topics/useTopicInfo'
 import { useRoute } from 'vue-router'
-import { reactive } from 'vue'
+import { isRef, unref } from 'vue'
+import { useStore } from 'vuex'
 
 const route = useRoute()
+const store = useStore()
 
-const { topic } = reactive(await useTopicInfo({ id: route.params.id }))
-const breadcrumbs = [{ link: '/', name: 'Home' }, { name: topic.name }]
+
+const { topic, refetch } = await useTopicInfo({ id: route.params.id })
+
+const handleAgreeClick = async (e) => {
+  e.stopPropagation()
+
+  store.dispatch('topics/updateUserVote', {
+    topicId: route.params.id, 
+    voteResult: true
+  })
+  
+  await refetch()
+}
+const handleDisagreeClick = async (e) => {
+  e.stopPropagation()
+
+  store.dispatch('topics/updateUserVote', {
+    topicId: route.params.id, 
+    voteResult: false
+  })
+
+  await refetch()
+}
+
+
+const breadcrumbs = [{ link: '/', name: 'Home' }, { name: topic.value.name }]
 </script>
 
 <template>
@@ -20,7 +46,7 @@ const breadcrumbs = [{ link: '/', name: 'Home' }, { name: topic.name }]
             :crumbs="breadcrumbs"
             class="page__header-breadcrumbs"
           />
-          <h1 class="title">{{ topic.name }}</h1>
+          <h1 class="title">{{ topic.name }} {{ topic.votes_for }} {{ topic.votes_against }}</h1>
         </header>
 
         <div class="page__content">
@@ -32,8 +58,14 @@ const breadcrumbs = [{ link: '/', name: 'Home' }, { name: topic.name }]
                 <span class="votes-progress-track__against"></span>
               </div>
               <div class="votes-progress-controls">
-                <AppButton class="votes-progress-controls__btn votes-progress-controls__for">Agree</AppButton>
-                <AppButton class="votes-progress-controls__btn votes-progress-controls__against">Disagree</AppButton>
+                <AppButton 
+                  class="votes-progress-controls__btn votes-progress-controls__for"
+                  @click="handleAgreeClick"
+                  >Agree</AppButton>
+                <AppButton
+                  class="votes-progress-controls__btn votes-progress-controls__against"
+                  @click="handleDisagreeClick"
+                >Disagree</AppButton>
               </div>
             </div>
           </div>

@@ -1,14 +1,14 @@
 import { BaseModel } from "./BaseModel.js"
 
 class TopicsModelClass extends BaseModel {
-  _userNamespace = 'topics'
+  _topicsNamespace = 'topics'
 
   constructor() {
     super()
   }
   async get(searchKeys) {
     return this.makeQuery({
-      queryFn: async () => await this.dbProvider[this._userNamespace]
+      queryFn: async () => await this.dbProvider[this._topicsNamespace]
         .findUnique({
           where: searchKeys
         })
@@ -16,13 +16,13 @@ class TopicsModelClass extends BaseModel {
   }
   async getAll() {
     return this.makeQuery({
-      queryFn: async () => await this.dbProvider[this._userNamespace].findMany()
+      queryFn: async () => await this.dbProvider[this._topicsNamespace].findMany()
     })
   }
   async create({ name, description }) {
     return this.makeQuery({
       queryFn: async () => {
-        return await this.dbProvider[this._userNamespace].create({
+        return await this.dbProvider[this._topicsNamespace].create({
           data: {
             name,
             description

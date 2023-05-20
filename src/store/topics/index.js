@@ -9,7 +9,8 @@ const store = {
 
   state() {
     return {
-      topics: []
+      topics: [],
+      currentTopic: {}
     }
   },
 
@@ -24,6 +25,21 @@ const store = {
 
       const topics = data.value?.topics.map(topic => ({...topic, createdAt: dayjs(topic.createdAt).format('DD MMMM YYYY')}))
       return topics
+    },
+
+    async updateUserVote({}, { topicId, voteResult }) {
+      const { isFetching, error, data } = await useAppFetch(`vote/topic/${topicId}`)
+        .post({ voteResult })
+        .json()
+
+      if (!data.value?.status) {
+        console.log(error)
+        return false
+      }
+
+      const voted = data.value?.voted
+      // console.log(voted)
+      return voted
     }
   }
 }

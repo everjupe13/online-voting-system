@@ -1,22 +1,29 @@
-import { ref } from 'vue'
+import { ref, unref, toRef, watchEffect } from 'vue'
 import useAppFetch from '@/modules/http/useAppFetch.js'
-import { useStore } from 'vuex'
+// import { useStore } from 'vuex'
 
 const createService = async ({ id }) => {
 
-  const store = useStore()
-  const topics = await store.dispatch('topics/getAllTopics')
+  const topic = ref({})
+  const fetcher = async () => {
+    const { data, isFetching } = await useAppFetch(`topics/search/${id}`)
+      .get()
+      .json()
 
-  const { data, isFetching } = await useAppFetch(`topics/search/${id}`)
-    .get()
-    .json()
+    if (!data.value.status) {
+      topic.value = {}
+      return 
+    }
 
-  if (!data.value.status) {
-    return false
+    topic.value = { ...data.value.topic }
+    return
   }
+
+  await fetcher()
   
   return {
-    topic: data.value.topic || {},
+    topic,
+    refetch: fetcher
   }
 }
 
