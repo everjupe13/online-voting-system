@@ -3,6 +3,8 @@ import jwtDecode from 'jwt-decode'
 export const TOKEN_STORAGE_KEY = 'x-token'
 export const USER_STORAGE_KEY = 'x-user'
 
+import { profile } from './profile'
+
 const store = {
   namespaced: true,
 
@@ -80,7 +82,7 @@ const store = {
       commit('setUser', null)
     },
 
-    async setupUserSession({ commit }) {
+    async setupUserSession({ commit, dispatch }) {
       const localToken = localStorage.getItem(TOKEN_STORAGE_KEY) !== 'undefined'
         ? JSON.parse(localStorage.getItem(TOKEN_STORAGE_KEY))
         : null
@@ -95,6 +97,7 @@ const store = {
         if (status) {
           commit('setUser', user)
           localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user))
+          dispatch('profile/fetchProfile')
           return true
         }
       }
@@ -102,6 +105,10 @@ const store = {
 
       return false
     }
+  },
+
+  modules: {
+    profile
   }
 }
 

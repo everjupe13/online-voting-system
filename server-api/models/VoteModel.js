@@ -15,7 +15,6 @@ class VoteModelClass extends BaseModel {
     })
   }
   async create({ topicId, userId, voteResult }) {
-    console.log(voteResult)
     return this.makeQuery({
       queryFn: async () => {
         return await this.dbProvider[this._modelNamespace].upsert({
