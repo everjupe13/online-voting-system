@@ -4,18 +4,18 @@ import useAppFetch from '@/modules/http/useAppFetch.js'
 
 const createService = async ({ id }) => {
 
-  const topic = ref({})
+  const stared = ref({})
   const fetcher = async () => {
-    const { data, isFetching } = await useAppFetch(`topics/search/${id}`)
-      .get()
+    const { data, isFetching } = await useAppFetch(`stars/topic/${id}`)
+      .post({ isStared: true })
       .json()
 
     if (!data.value.status) {
-      topic.value = {}
+      star.value = {}
       return 
     }
 
-    topic.value = { ...data.value.topic }
+    stared.value = { ...data.value.stared }
 
     return
   }
@@ -23,7 +23,7 @@ const createService = async ({ id }) => {
   await fetcher()
   
   return {
-    topic,
+    stared,
     refetch: fetcher
   }
 }
@@ -32,4 +32,4 @@ const useService = (...args) => {
   return createService(...args)
 }
 
-export { useService as useTopicInfo }
+export { useService as useStaring }

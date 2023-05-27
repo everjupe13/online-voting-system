@@ -27,7 +27,6 @@ const store = {
 
   actions: {
     async fetchProfile({commit}) {
-      console.log('sdf')
       const { isFetching, error, data } = await useAppFetch('profile/show').post().json()
 
       if (!data.value?.status) {

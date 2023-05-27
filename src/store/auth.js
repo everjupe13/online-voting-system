@@ -102,7 +102,6 @@ const store = {
         }
       }
 
-
       return false
     }
   },

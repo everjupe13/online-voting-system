@@ -38,7 +38,6 @@ const store = {
       }
 
       const voted = data.value?.voted
-      // console.log(voted)
       return voted
     }
   }

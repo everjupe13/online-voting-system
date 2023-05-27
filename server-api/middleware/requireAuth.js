@@ -35,7 +35,7 @@ export const checkAuth = async (req, res, next) => {
   const token = req.headers.authorization?.replace('Bearer ', '')
   if (!token) {
     req.user = null
-    next()
+    return next()
   }
 
   const payload = jwt.verify(token, process.env.JWT_SECRET)
@@ -52,6 +52,5 @@ export const checkAuth = async (req, res, next) => {
   delete user.password
   // Attach the user object to the request object for future use
   req.user = user
-  req
   next()
 }

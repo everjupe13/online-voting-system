@@ -40,10 +40,10 @@ router.get('/topics/search', checkAuth, async (req, res) => {
     const _votesArray = topicsVotes.find((_, idx) => idx === topicIdx)
 
     const votesFor = _votesArray.reduce((acc, voteData) => {
-      return voteData.voteResult === true && voteData.voted ? acc++ : acc
+      return voteData.voteResult === true && voteData.voted ? acc += 1 : acc
     }, 0)
     const votesAgainst = _votesArray.reduce((acc, voteData) => {
-      return voteData.voteResult === false && voteData.voted ? acc++ : acc
+      return voteData.voteResult === false && voteData.voted ? acc += 1 : acc
     }, 0)
 
 
@@ -71,7 +71,7 @@ router.get('/topics/search', checkAuth, async (req, res) => {
     }
   })
 
-  return res.status(200).json({ status: true, topics, extendedTopics })
+  return res.status(200).json({ status: true, topics: extendedTopics })
 })
 
 router.get('/topics/search/:id', checkAuth, async (req, res) => {

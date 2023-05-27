@@ -3,7 +3,6 @@ import AppTextInput from '@/components/AppTextInput.vue'
 import AppButton from '@/components/AppButton.vue'
 import { reactive, watchEffect, ref } from 'vue'
 import { useStore } from 'vuex'
-import useAppFetch from '@/modules/http/useAppFetch.js'
 
 const store = useStore()
 const profile = ref({})
@@ -23,25 +22,6 @@ const onProfileUpdate = () => {
 
   profileForm.name = profileForm.bio = ''
 }
-
-const onChangeProfile = async () => {
-  return
-  const { isFetching, data } = await useAppFetch('topics/create')
-    .post({
-      name: topicData.name,
-      description: topicData.description
-    })
-    .json()
-
-  if (!data.value.status) {
-    console.error('onTopicCreate error', data.value.description)
-    return false
-  }
-
-  topicData.name = topicData.description = ''
-  console.log(data.value.topic)
-  return true
-}
 </script>
 
 <template>
@@ -54,32 +34,19 @@ const onChangeProfile = async () => {
         </header>
 
         <div class="page__content-block">
-          <!-- <h4 class="headings-text">Create your topic</h4> -->
+          <h4 class="headings-text">Your data:</h4>
+        </div>
+
+        <div class="page__content-block">
+          <p class="commont-text profile__info"><b>name</b>: {{ profile.name }}</p>
+          <p class="commont-text profile__info"><b>bio</b>: {{ profile.bio }}</p>
+        </div>
+
+        <div class="page__content-block">
           <h4 class="headings-text">Change your info</h4>
         </div>
 
         <div class="page__content-block">
-          <!-- <form @submit.prevent="onCreateTopic" class="form auth__form">
-            <div class="form__inputs">
-              <AppTextInput 
-                :value="topicData.name"
-                :label-binding-id="'name'"
-                :input-type="'text'"
-                :label="'name'"
-                class="auth__input"
-                @input="v => topicData.name = v"
-              />
-              <AppTextInput 
-                :value="topicData.description"
-                :label-binding-id="'description'"
-                :input-type="'text'"
-                :label="'description'"
-                class="auth__input"
-                @input="v => topicData.description = v" 
-              />
-            </div>
-            <AppButton type="submit">Create</AppButton>
-          </form> -->
           <form @submit.prevent="onProfileUpdate" class="form auth__form">
             <div class="form__inputs">
               <AppTextInput 
@@ -103,14 +70,18 @@ const onChangeProfile = async () => {
           </form>
         </div>
 
-        <div class="page__content-block">
-          <p class="commont-text">name: {{ profile.name }}</p>
-          <p class="commont-text">bio: {{ profile.bio }}</p>
-        </div>
+       
       </div>
     </div>
   </section>
 </template>
 
 <style lang="scss" scoped>
+.profile {
+
+  &__info {
+    font-size: 18px;
+    margin-bottom: 3px;
+  }
+}
 </style>

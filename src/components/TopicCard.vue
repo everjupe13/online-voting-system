@@ -28,7 +28,7 @@ const topic = reactive({ ...props.topicData })
         <div class="topic-card__desc">
           {{ topic.description }}
         </div>
-        <div class="topic-card__results">{{ topic.voteFor || '???' }}+ | {{ topic.voteAgainst || '???' }}-</div>
+        <div class="topic-card__results">{{ topic.votes_for ?? '???' }}+ | {{ topic.votes_against ?? '???' }}-</div>
       </div>
     </div>
   </div>

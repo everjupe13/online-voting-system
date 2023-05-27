@@ -87,3 +87,31 @@ a,
     }
   }
 }
+
+.title-row {
+  display: flex;
+  justify-content: space-between; 
+  flex-wrap: wrap;
+}
+
+.stars {
+  display: flex;
+  align-items: center;
+
+  .stars__text {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    text-decoration: underline;
+    color: inherit;
+    cursor: pointer;
+
+    text-underline-offset: 5px;
+
+    transition: 0.15s all linear;
+
+    &:hover {
+      @include link-gradient()
+    }
+  }
+}
