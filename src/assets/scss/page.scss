@@ -3,7 +3,14 @@
   height: 100%;
 
   &__header {
+    position: relative;
     margin-bottom: 40px;
+  }
+
+  &__header-breadcrumbs {
+    position: absolute;
+    top: 0;
+    transform: translateY(calc(-100% - 8px));
   }
 
   &__wrapper {
@@ -19,4 +26,5 @@
   &__content-block {
     margin-bottom: 20px;
   }
+  
 }

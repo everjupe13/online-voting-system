@@ -12,7 +12,7 @@ export class BaseModel {
   }
 
   async disconnectDb() {
-    await this.dbProvider.$disconnect()
+    await this.dbProvider?.$disconnect()
     this.dbProvider = null
   }
 

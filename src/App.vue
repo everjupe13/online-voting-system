@@ -11,21 +11,23 @@ store.dispatch('auth/setupUserSession')
 </script>
 
 <template>
-  <layout-default>
+  <Suspense>
+    <layout-default>
 
-    <!-- MainAside element / Navigation and Controling -->
-    <template #menu>
-      <app-main-aside />
-    </template>
+      <!-- MainAside element / Navigation and Controling -->
+      <template #menu>
+        <app-main-aside />
+      </template>
 
-    <!-- Content box -->
-    <template #content>
-      <router-view v-slot="{ Component }">
-        <transition name="fade">
-          <component :is="Component" />
-        </transition>
-      </router-view>
-    </template>
+      <!-- Content box -->
+      <template #content>
+        <router-view v-slot="{ Component }">
+          <transition name="fade">
+            <component :is="Component" />
+          </transition>
+        </router-view>
+      </template>
 
-  </layout-default>
+    </layout-default>
+  </Suspense>
 </template>

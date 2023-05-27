@@ -1,7 +1,7 @@
 import { isReactive, reactive } from 'vue'
 import store from '@/store/index.js'
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import HomePage from '@/pages/HomePage.vue'
 
 const refStore = !isReactive(store) ? reactive(store) : store
 
@@ -11,17 +11,32 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: HomePage
     },
     {
       path: '/about',
       name: 'about',
-      component: () => import('../views/AboutView.vue')
+      component: () => import('@/pages/AboutPage.vue')
     },
     {
       path: '/auth',
       name: 'auth',
-      component: () => import('../views/AuthView.vue')
+      component: () => import('@/pages/AuthPage.vue')
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: () => import('@/pages/ProfilePage.vue')
+    },
+    {
+      path: '/topic/:id',
+      name: 'topic',
+      component: () => import('@/pages/TopicPage.vue')
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'not-found',
+      component: () => import('@/pages/404Page.vue')
     }
   ]
 })
